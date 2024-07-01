@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +27,30 @@ namespace WinUI3NavigationExample.Views
         public SettingsPage()
         {
             this.InitializeComponent();
+            SetThemeOnComboBox();
+        }
+
+        private void Themes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem comboBoxItem && comboBoxItem.Content is string themeString)
+            {
+                // Save the topics selected by the user to AppData
+                ApplicationData.Current.LocalSettings.Values["theme"] = themeString;
+            }
+        }
+
+        public void SetThemeOnComboBox()
+        {
+            ApplicationTheme currentTheme = Application.Current.RequestedTheme;
+            switch (currentTheme)
+            {
+                case ApplicationTheme.Dark:
+                    this.themeMode.SelectedIndex = 1;
+                    break;
+                case ApplicationTheme.Light:
+                    this.themeMode.SelectedIndex = 0;
+                    break;
+            }
         }
     }
 }

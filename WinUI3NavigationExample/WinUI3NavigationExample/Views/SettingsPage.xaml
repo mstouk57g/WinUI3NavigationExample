@@ -5,9 +5,26 @@
     xmlns:local="using:WinUI3NavigationExample.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="Settings"/>
+        <ScrollViewer VerticalAlignment="Top">
+            <StackPanel Margin="0,10,50,0">
+                <TextBlock Text="Personalise"/>
+                <controls:SettingsCard x:Name="DisplayTheme"
+                            Margin="0,10,0,0"
+                            Description="Dark or light themes. Please restart to aply."
+                            Header="Display Theme"
+                            HeaderIcon="{ui:FontIcon Glyph=&#xE706;}"
+                            IsEnabled="True">
+                    <ComboBox SelectedIndex="0" SelectionChanged="Themes_SelectionChanged" x:Name="themeMode">
+                        <ComboBoxItem>Light</ComboBoxItem>
+                        <ComboBoxItem>Dark</ComboBoxItem>
+                    </ComboBox>
+                </controls:SettingsCard>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

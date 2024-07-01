@@ -17,6 +17,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,6 +36,16 @@ namespace WinUI3NavigationExample
         public App()
         {
             this.InitializeComponent();
+
+            // Read the user's selected theme from App setting Data
+            string themeString = ApplicationData.Current.LocalSettings.Values["theme"] as string;
+            ApplicationTheme theme = themeString switch
+            {
+                "Light" => ApplicationTheme.Light,
+                "Dark" => ApplicationTheme.Dark,
+                _ => Application.Current.RequestedTheme, // Use the currently applied theme as the default
+            };
+            Application.Current.RequestedTheme = theme;
         }
 
         /// <summary>
