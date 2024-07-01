@@ -31,8 +31,10 @@ namespace WinUI3NavigationExample.Views
         public SettingsPage()
         {
             this.InitializeComponent();
+            this.Loaded += (s, e) => { this.IsPageLoaded = true; };
             SetOnComboBox();
         }
+        public bool IsPageLoaded { get; set; }
 
 
         private void Themes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -78,7 +80,6 @@ namespace WinUI3NavigationExample.Views
 
         private void MaterialsChanged(object sender, SelectionChangedEventArgs e)
         {
-            Trace.WriteLine("1");
 
             if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem comboBoxItem && comboBoxItem.Content is string BackgroundMaterial)
             {
@@ -87,7 +88,7 @@ namespace WinUI3NavigationExample.Views
                 var app = (App)Application.Current;
                 var window = app.m_window;
 
-                if (window != null)
+                if (!this.IsPageLoaded) return;
                 {
                     Trace.WriteLine(BackgroundMaterial);
 
