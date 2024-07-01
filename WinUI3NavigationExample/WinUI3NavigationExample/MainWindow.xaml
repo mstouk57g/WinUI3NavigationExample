@@ -7,9 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Window.SystemBackdrop>
+    <!--Window.SystemBackdrop>
         <MicaBackdrop Kind="Base"/>
-    </Window.SystemBackdrop>
+    </Window.SystemBackdrop -->
+    <!-- You can use this to set Mica for the window. -->
 
     
     <Grid>

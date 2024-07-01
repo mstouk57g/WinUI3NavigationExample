@@ -19,9 +19,21 @@
                             Header="Display Theme"
                             HeaderIcon="{ui:FontIcon Glyph=&#xE706;}"
                             IsEnabled="True">
-                    <ComboBox SelectedIndex="0" SelectionChanged="Themes_SelectionChanged" x:Name="themeMode">
+                    <ComboBox SelectionChanged="Themes_SelectionChanged" x:Name="themeMode">
                         <ComboBoxItem>Light</ComboBoxItem>
                         <ComboBoxItem>Dark</ComboBoxItem>
+                    </ComboBox>
+                </controls:SettingsCard>
+                <controls:SettingsCard x:Name="Background"
+                            Margin="0,10,0,0"
+                            Description="Choose Backgound Material, it can be Mica, MicaAlt or Acrylic."
+                            Header="Background Material"
+                            HeaderIcon="{ui:FontIcon Glyph=&#xF4A5;}"
+                            IsEnabled="True">
+                    <ComboBox SelectionChanged="MaterialsChanged" x:Name="BackgroundMode">
+                        <ComboBoxItem>Mica</ComboBoxItem>
+                        <ComboBoxItem>MicaAlt</ComboBoxItem>
+                        <ComboBoxItem>Acrylic</ComboBoxItem>
                     </ComboBox>
                 </controls:SettingsCard>
             </StackPanel>

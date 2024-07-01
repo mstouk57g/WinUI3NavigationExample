@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI;
+using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -38,7 +39,7 @@ namespace WinUI3NavigationExample
             this.InitializeComponent();
 
             // Read the user's selected theme from App setting Data
-            string themeString = ApplicationData.Current.LocalSettings.Values["theme"] as string;
+            string themeString = ApplicationData.Current.LocalSettings.Values["LightDarktheme"] as string;
             ApplicationTheme theme = themeString switch
             {
                 "Light" => ApplicationTheme.Light,
@@ -46,6 +47,27 @@ namespace WinUI3NavigationExample
                 _ => Application.Current.RequestedTheme, // Use the currently applied theme as the default
             };
             Application.Current.RequestedTheme = theme;
+        }
+
+        public void setBackground()
+        {
+            string Background = ApplicationData.Current.LocalSettings.Values["BackgroundMaterial"] as string;
+
+            switch (Background)
+            {
+                case "Mica":
+                    m_window.SystemBackdrop = new MicaBackdrop() { Kind = MicaKind.Base };
+                    break;
+                case "Acrylic":
+                    m_window.SystemBackdrop = new DesktopAcrylicBackdrop();
+                    break;
+                case "MicaAlt":
+                    m_window.SystemBackdrop = new MicaBackdrop() { Kind = MicaKind.BaseAlt };
+                    break;
+                default:
+                    m_window.SystemBackdrop = new MicaBackdrop() { Kind = MicaKind.Base };
+                    break;
+            }
         }
 
         /// <summary>
@@ -56,9 +78,10 @@ namespace WinUI3NavigationExample
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();
+            setBackground();
             m_window.Activate();
         }
 
-        private Window m_window;
+        public Window m_window;
     }
 }

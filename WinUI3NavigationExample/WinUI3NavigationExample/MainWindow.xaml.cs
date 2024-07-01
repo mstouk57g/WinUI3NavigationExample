@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,8 +36,9 @@ namespace WinUI3NavigationExample
                        new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo()
                        );
 
-            SystemBackdrop = new MicaBackdrop()
-                { Kind = MicaKind.Base };
+            //SystemBackdrop = new MicaBackdrop()
+            //    { Kind = MicaKind.Base };
+            // You can also set Mica by using this.
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
@@ -89,5 +91,6 @@ namespace WinUI3NavigationExample
             NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
         }
 
+        
     }
 }
